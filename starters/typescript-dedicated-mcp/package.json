@@ -1,0 +1,19 @@
+{
+  "name": "typescript-dedicated-mcp-starter",
+  "version": "1.0.0",
+  "description": "TypeScript MCP server starter for dedicated Node.js 22 runtime",
+  "main": "dist/server/mcp-server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server/mcp-server.js",
+    "test": "npm run build && node --test tests/**/*.test.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "http": "0.0.1-security"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "typescript": "^5.5.0"
+  }
+}
