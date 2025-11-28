@@ -1,0 +1,13 @@
+{
+  "httpMethod": "POST",
+  "path": "/mcp",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{\"jsonrpc\":\"2.0\",\"id\":2,\"method\":\"tools/call\",\"params\":{\"name\":\"hello-world\",\"arguments\":{\"inputs\":{\"name\":\"World\"}}}}",
+  "queryStringParameters": null,
+  "requestContext": {
+    "requestId": "test-call-request"
+  }
+}
+

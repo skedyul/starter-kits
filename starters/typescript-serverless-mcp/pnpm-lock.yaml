@@ -11,6 +11,9 @@ importers:
       '@modelcontextprotocol/sdk':
         specifier: ^1.0.0
         version: 1.22.0
+      skedyul:
+        specifier: latest
+        version: 0.1.0
     devDependencies:
       '@types/node':
         specifier: ^24.10.1
@@ -332,6 +335,9 @@ packages:
   side-channel@1.1.0:
     resolution: {integrity: sha512-ZX99e6tRweoUXqR+VBrslhda51Nh5MTQwou5tnUDgbtyM0dBgmhEDtWGP/xbKn6hqfPRHujUNwz5fy/wbbhnpw==}
     engines: {node: '>= 0.4'}
+
+  skedyul@0.1.0:
+    resolution: {integrity: sha512-BoWh9EDY23sRpl/vRfz4qIZgtNWQOVycrxjLzpJV56RROwooENFY5j5LEjg6ZIzhLh5cFC9CKNcbwblqy+6gcw==}
 
   statuses@2.0.2:
     resolution: {integrity: sha512-DvEy55V3DB7uknRo+4iOGT5fP1slR8wQohVdknigZPMpMstaKJQWhwiYBACJE3Ul2pTnATihhBYnRhZQHGBiRw==}
@@ -729,6 +735,13 @@ snapshots:
       side-channel-list: 1.0.0
       side-channel-map: 1.0.1
       side-channel-weakmap: 1.0.2
+
+  skedyul@0.1.0:
+    dependencies:
+      '@modelcontextprotocol/sdk': 1.22.0
+    transitivePeerDependencies:
+      - '@cfworker/json-schema'
+      - supports-color
 
   statuses@2.0.2: {}
 

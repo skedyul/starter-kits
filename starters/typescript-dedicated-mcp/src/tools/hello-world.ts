@@ -1,4 +1,4 @@
-import type { ToolContext, ToolHandler } from '../registry'
+import type { ToolContext, ToolHandler } from 'skedyul'
 
 export interface HelloWorldInput {
   name?: string
@@ -6,24 +6,32 @@ export interface HelloWorldInput {
 
 export interface HelloWorldOutput {
   message: string
-  environmentName: string
 }
 
-// Example tool demonstrating use of inputs and environment variables.
-// It reads an optional "name" from input and a "SKEDYUL_ENV" from env.
+const RATE_PER_CHARACTER = 0.75
+
+// Example tool demonstrating inputs, environment variables, and billing.
 export const helloWorld: ToolHandler<HelloWorldInput, HelloWorldOutput> = async ({
   input,
   context,
-}: {
-  input: HelloWorldInput
-  context: ToolContext
 }) => {
   const name = input.name?.trim() || 'world'
   const environmentName = context.env.SKEDYUL_ENV ?? 'local'
+  const characters = name.length
+  const credits = characters * RATE_PER_CHARACTER
+
+  const prefix =
+    context.mode === 'estimate'
+      ? 'Estimate-ready greeting'
+      : 'Dedicated hello'
 
   return {
-    message: `Hello, ${name}! This response is coming from the dedicated MCP starter.`,
-    environmentName,
+    output: {
+      message: `${prefix}, ${name}!`,
+    },
+    billing: {
+      credits,
+    },
   }
 }
 

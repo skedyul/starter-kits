@@ -1,0 +1,35 @@
+version = 0.1
+
+[default]
+[default.global.parameters]
+stack_name = "typescript-serverless-mcp-starter"
+
+[default.build.parameters]
+cached = true
+parallel = true
+
+[default.local_start_api.parameters]
+warm_containers = "EAGER"
+container_host = "localhost"
+container_host_interface = "127.0.0.1"
+port = 3000
+
+[default.local_start_api.parameters.docker_network]
+network = "bridge"
+
+[default.local_invoke.parameters]
+container_host = "localhost"
+container_host_interface = "127.0.0.1"
+
+[default.sync.parameters]
+watch = true
+
+[default.package.parameters]
+resolve_s3 = true
+
+[default.deploy.parameters]
+resolve_s3 = true
+capabilities = "CAPABILITY_IAM"
+confirm_changeset = true
+region = "us-east-1"
+

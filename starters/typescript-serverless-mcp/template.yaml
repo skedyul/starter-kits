@@ -1,0 +1,55 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: TypeScript Serverless MCP Starter - AWS SAM Template
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 512
+
+Resources:
+  McpServerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      ImageUri: typescript-serverless-mcp-starter:latest
+      ImageConfig:
+        Command:
+          - dist/server/mcp-server.handler
+      Events:
+        HealthCheck:
+          Type: Api
+          Properties:
+            Path: /health
+            Method: GET
+        McpEndpoint:
+          Type: Api
+          Properties:
+            Path: /mcp
+            Method: POST
+        McpOptions:
+          Type: Api
+          Properties:
+            Path: /mcp
+            Method: OPTIONS
+        EstimateEndpoint:
+          Type: Api
+          Properties:
+            Path: /estimate
+            Method: POST
+      Environment:
+        Variables:
+          MCP_ENV_JSON: '{}'
+    Metadata:
+      DockerTag: latest
+      DockerContext: .
+      Dockerfile: Dockerfile
+
+Outputs:
+  McpServerApi:
+    Description: API Gateway endpoint URL
+    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod'
+  McpServerFunction:
+    Description: MCP Server Lambda Function ARN
+    Value: !GetAtt McpServerFunction.Arn
+
